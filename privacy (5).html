@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy - Scan Aushadhi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+        }
+
+        /* --- New Animation Keyframes --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .app-title {
+            font-weight: 700;
+            font-size: 14px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 12px auto;
+            padding: 0 10px 40px 10px;
+        }
+
+        .card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            /* --- Animation Applied Here --- */
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        h1 { font-size: 1.25rem; margin: 0 0 5px 0; font-weight: 800; }
+        .update-tag { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px; display: block; }
+
+        .note-box {
+            background: #fff9db;
+            border-left: 3px solid #fcc419;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        h2 {
+            font-size: 0.95rem;
+            margin: 18px 0 6px 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+
+        h2::before {
+            content: "";
+            width: 3px;
+            height: 12px;
+            background: var(--secondary);
+            margin-right: 8px;
+            border-radius: 4px;
+        }
+
+        p, li { color: #475569; margin-bottom: 6px; }
+        ul { padding-left: 15px; margin: 0; }
+
+        .footer-info {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+            text-align: center;
+        }
+
+        .contact-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 10px;
+            color: var(--text-muted);
+            /* Footer also animates slightly later */
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            &nbsp;Back
+        </a>
+        <div class="app-title">Scan Aushadhi</div>
+        <div style="width: 40px;"></div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h1>Privacy Policy</h1>
+            <span class="update-tag">Last Updated: March 19, 2026</span>
+
+            <p>At <strong>Scan Aushadhi</strong>, privacy is built-in. We don't want your data; we just want to help you understand medicines.</p>
+
+            <div class="note-box">
+                <strong>Disclaimer:</strong> This app is informational and NOT for medical advice.
+            </div>
+
+            <h2>1. Zero Data Logging</h2>
+            <ul>
+                <li><strong>No Accounts:</strong> No signup or login is required.</li>
+                <li><strong>No PII:</strong> We do not collect names, emails, or phone numbers.</li>
+                <li><strong>Temporary Photos:</strong> Scanned images are processed and deleted instantly.</li>
+            </ul>
+
+            <h2>2. Essential Permissions</h2>
+            <p>We only ask for <strong>Camera</strong> and <strong>Storage</strong> access to analyze your medicine labels. We cannot access your other private files.</p>
+
+            <h2>3. AI Processing</h2>
+            <p>We use secure AI APIs to read medicine text. This process is anonymous. No personal info is ever sent to third parties.</p>
+
+            <h2>4. Security</h2>
+            <p>Your session is encrypted. Since we don't have a database of users, there's nothing for hackers to steal.</p>
+
+            <div class="footer-info">
+                <strong>Questions?</strong><br>
+                Email: <a href="mailto:krishxav@gmail.com" class="contact-link">krishxav@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 NexCod Developers | By Krishav Kumar
+    </footer>
+
+</body>
+</html>

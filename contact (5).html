@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Scan Aushadhi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --bg: #f8fafc;
+        }
+
+        /* --- Animation Keyframes --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .app-title {
+            font-weight: 700;
+            font-size: 14px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 12px auto;
+            padding: 0 10px;
+        }
+
+        .main-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            text-align: center;
+            /* Card animation */
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        h1 { font-size: 1.25rem; margin: 5px 0; font-weight: 800; }
+        .info-text { color: var(--text-muted); font-size: 12px; margin-bottom: 20px; }
+
+        .support-box {
+            display: grid;
+            gap: 10px;
+        }
+
+        .contact-item {
+            background: #fdfdff;
+            border: 1px solid #f1f5f9;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+            transition: 0.2s ease;
+            opacity: 0; /* Initially hidden for animation */
+        }
+
+        /* Staggered animation for list items */
+        .contact-item:nth-child(1) { animation: fadeInUp 0.5s ease-out 0.2s forwards; }
+        .contact-item:nth-child(2) { animation: fadeInUp 0.5s ease-out 0.3s forwards; }
+
+        .contact-item:active { background: #f1f5f9; transform: scale(0.98); }
+
+        .badge {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .badge-dev { background: #e0e7ff; color: #4338ca; }
+        .badge-admin { background: #f3e8ff; color: #7e22ce; }
+
+        .email {
+            display: block;
+            font-weight: 600;
+            font-size: 13.5px;
+            color: var(--primary);
+            margin: 2px 0;
+        }
+
+        .desc { font-size: 11px; color: var(--text-muted); }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            &nbsp;Back
+        </a>
+        <div class="app-title">Scan Aushadhi</div>
+        <div style="width: 40px;"></div>
+    </header>
+
+    <div class="container">
+        <div class="main-card">
+            <h1>Contact Support</h1>
+            <p class="info-text">Faced an issue? Click below to reach out.</p>
+
+            <div class="support-box">
+                <a href="mailto:Nexcod.developer@gmail.com" class="contact-item">
+                    <span class="badge badge-dev">Tech & Bugs</span>
+                    <span class="email">Nexcod.developer@gmail.com</span>
+                    <p class="desc">Report app crashes or technical errors.</p>
+                </a>
+
+                <a href="mailto:krishxav@gmail.com" class="contact-item">
+                    <span class="badge badge-admin">Admin & Policy</span>
+                    <span class="email">krishxav@gmail.com</span>
+                    <p class="desc">For business or data privacy inquiries.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 NexCod Developers | By Krishav Kumar
+    </footer>
+
+</body>
+</html>
