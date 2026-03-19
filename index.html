@@ -262,20 +262,66 @@ function handleImageUpload(e) {
     toggleActionSheet(false);
 }
 
-// SECURE PLACEHOLDER (simulate backend)
+// OPENAI INTEGRATION (temporary testing only - key exposed for demo)
 function callAI(base64) {
-    setTimeout(() => { // simulate network
-        const mock = {
-            name: "Paracetamol 500mg",
-            uses: "Fever, headache, body pain",
-            dosage: "1 tablet every 6 hours • Max 4/day",
-            sideEffects: "Nausea, allergic reaction (rare)",
-            precautions: "Do not exceed dose • Consult doctor if liver issue"
-        };
+    const loaderEl = document.getElementById('scan-loader');
 
-        document.getElementById('scan-loader').style.display = 'none';
+    if (!navigator.onLine) {
+        loaderEl.style.display = 'none';
         isLoading = false;
         document.getElementById('scan-btn').disabled = false;
+        showNotification(t[state.lang].noInternet, 'error', 'Offline');
+        return;
+    }
+
+    fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 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'
+        },
+        body: JSON.stringify({
+            model: "gpt-4o",
+            messages: [
+                {
+                    role: "system",
+                    content: "You are a medicine analysis assistant. Analyze the medicine image and return ONLY valid JSON in this format: {\"name\":\"...\",\"uses\":\"...\",\"dosage\":\"...\",\"sideEffects\":\"...\",\"precautions\":\"...\"}. If the image is not a medicine, return {\"name\":\"NOT_MEDICINE\"}."
+                },
+                {
+                    role: "user",
+                    content: [
+                        { type: "text", text: "Analyze this medicine image" },
+                        { type: "image_url", image_url: { url: `data:image/jpeg;base64,${base64}` } }
+                    ]
+                }
+            ],
+            max_tokens: 300,
+            temperature: 0.1
+        })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error('API error');
+        return res.json();
+    })
+    .then(data => {
+        let content = data.choices[0].message.content.trim();
+        content = content.replace(/^```json\s*|\s*```$/g, '').trim();
+
+        let parsed;
+        try {
+            parsed = JSON.parse(content);
+        } catch (e) {
+            throw new Error('Invalid JSON');
+        }
+
+        loaderEl.style.display = 'none';
+        isLoading = false;
+        document.getElementById('scan-btn').disabled = false;
+
+        if (parsed.name === "NOT_MEDICINE") {
+            showNotification(t[state.lang].invalidMedicine, 'warning', 'Invalid');
+            return;
+        }
 
         state.scansToday++;
         localStorage.setItem('scansToday', state.scansToday);
@@ -283,8 +329,15 @@ function callAI(base64) {
         vibrate([60,30,60]);
 
         showNotification(t[state.lang].scanSuccess, 'success', 'Great!');
-        setTimeout(() => showResult(mock), 700);
-    }, 1400);
+        setTimeout(() => showResult(parsed), 700);
+    })
+    .catch(() => {
+        loaderEl.style.display = 'none';
+        isLoading = false;
+        document.getElementById('scan-btn').disabled = false;
+        const msg = navigator.onLine ? t[state.lang].serverError : t[state.lang].noInternet;
+        showNotification(msg, 'error', 'Failed');
+    });
 }
 
 function showResult(data) {
@@ -333,7 +386,6 @@ function renderHistory() {
 
 function clearHistory() {
     showNotification("Clear all scan history?", 'warning', 'Confirm');
-    // simulate confirm via popup action (for demo – in real app add yes/no buttons)
     setTimeout(() => {
         state.history = [];
         localStorage.removeItem('scanHistory');
